@@ -10,11 +10,7 @@ const API_KEY = process.env.LIVEKIT_API_KEY;
 const API_SECRET = process.env.LIVEKIT_API_SECRET;
 
 app.get('/', (req, res) => {
-  res.json({
-    status: 'ok',
-    hasApiKey: !!process.env.LIVEKIT_API_KEY,
-    hasApiSecret: !!process.env.LIVEKIT_API_SECRET,
-  });
+  res.json({ status: 'ok' });
 });
 
 app.post('/token', async (req, res) => {
