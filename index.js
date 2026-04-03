@@ -6,8 +6,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const API_KEY = process.env.LIVEKIT_API_KEY || 'API7jiDr3tKBDX5';
-const API_SECRET = process.env.LIVEKIT_API_SECRET || 'IUNHLKt1nIhCfgP32QLsetspPLCaAlHMguKCnQ4CeN2B';
+const API_KEY = process.env.LIVEKIT_API_KEY;
+const API_SECRET = process.env.LIVEKIT_API_SECRET;
 
 app.get('/', (req, res) => {
   res.json({ status: 'ok' });
