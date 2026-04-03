@@ -14,13 +14,18 @@ app.get('/', (req, res) => {
 });
 
 app.post('/token', async (req, res) => {
-  const { roomName, participantName } = req.body;
-  const token = new AccessToken(API_KEY, API_SECRET, {
-    identity: participantName,
-  });
-  token.addGrant({ roomJoin: true, room: roomName });
-  const jwt = await token.toJwt();
-  res.json({ token: jwt });
+  try {
+    const { roomName, participantName } = req.body;
+    const token = new AccessToken(API_KEY, API_SECRET, {
+      identity: participantName,
+    });
+    token.addGrant({ roomJoin: true, room: roomName });
+    const jwt = await token.toJwt();
+    res.json({ token: jwt });
+  } catch (e) {
+    console.error('Token error:', e);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 const PORT = process.env.PORT || 3000;
